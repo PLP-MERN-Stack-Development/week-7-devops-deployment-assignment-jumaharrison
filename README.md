@@ -27,12 +27,12 @@ mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true,
   poolSize: 5,
 })
-.then(() => console.log('✅ Connected to MongoDB Atlas'))
-.catch((err) => console.error('❌ MongoDB Error:', err));
+.then(() => console.log(' Connected to MongoDB Atlas'))
+.catch((err) => console.error(' MongoDB Error:', err));
 
 // 4. HEALTH CHECK ENDPOINT
 app.get('/health', (req, res) => {
-  res.status(200).send('🟢 OK - API is live');
+  res.status(200).send(' OK - API is live');
 });
 
 // 5. PRODUCTION STATIC FRONTEND SERVE
@@ -45,21 +45,21 @@ if (process.env.NODE_ENV === 'production') {
 
 // 6. ERROR HANDLING
 app.use((err, req, res, next) => {
-  console.error('🔥 Error:', err.stack);
+  console.error(' Error:', err.stack);
   res.status(500).json({ message: 'Internal Server Error' });
 });
 
 // 7. SERVER LISTEN
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server running in ${process.env.NODE_ENV} on port ${PORT}`);
+  console.log(` Server running in ${process.env.NODE_ENV} on port ${PORT}`);
 });
 
 /* 
 ================================================================
   CI/CD Setup (GitHub Actions)
 ================================================================
-📁 .github/workflows/ci.yml
+ .github/workflows/ci.yml
 
 name: MERN CI/CD Pipeline
 on:
